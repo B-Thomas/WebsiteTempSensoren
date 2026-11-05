@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Historical report of temperature and humidity">
+  <title>Room report · Indoor climate</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.4/dist/jspdf.plugin.autotable.min.js"></script>
+  <script src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body data-page="room">
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">°</span><span>Indoor climate<span class="brand-subtitle">Sensor dashboard</span></span></a>
+    <nav><a class="nav-link" href="index.html">← All rooms</a></nav>
+  </header>
+  <main class="container">
+    <section class="page-heading">
+      <div><p class="eyebrow">HISTORICAL REPORT</p><h1 id="room-title">Room</h1><p class="muted">Aggregated readings for a chosen time range.</p></div>
+    </section>
+    <section class="panel filters">
+      <div class="filter-field"><label for="granularity">Grouping</label><select id="granularity"><option value="day">Daily average</option><option value="week">Weekly average</option><option value="month">Monthly average</option></select></div>
+      <div class="filter-field"><label for="start-date">From</label><input id="start-date" type="date"></div>
+      <div class="filter-field"><label for="end-date">To</label><input id="end-date" type="date"></div>
+      <button class="button" id="apply-filters" type="button">Apply</button>
+      <button class="button button-secondary" id="download-pdf" type="button" disabled>Download PDF report</button>
+    </section>
+    <div id="room-error" class="notice notice-error hidden" role="alert"></div>
+    <section class="metric-grid">
+      <article class="metric-card"><span class="metric-label">Avg. temperature</span><strong id="metric-temp">—</strong><span class="metric-unit">°C in range</span></article>
+      <article class="metric-card"><span class="metric-label">Avg. humidity</span><strong id="metric-humidity">—</strong><span class="metric-unit">% in range</span></article>
+      <article class="metric-card"><span class="metric-label">Data points</span><strong id="metric-count">—</strong><span class="metric-unit">aggregated intervals</span></article>
+    </section>
+    <section class="chart-grid detail-charts">
+      <article class="panel chart-panel"><div class="panel-heading"><div><h2>Temperature</h2><p class="muted">Average per interval</p></div><span class="unit-pill">°C</span></div><div class="chart-wrap detail-chart-wrap"><canvas id="detail-temp-chart" aria-label="Temperature trend"></canvas></div></article>
+      <article class="panel chart-panel"><div class="panel-heading"><div><h2>Humidity</h2><p class="muted">Average per interval</p></div><span class="unit-pill">%</span></div><div class="chart-wrap detail-chart-wrap"><canvas id="detail-humidity-chart" aria-label="Humidity trend"></canvas></div></article>
+    </section>
+    <section class="panel table-panel">
+      <div class="panel-heading"><div><h2>Table</h2><p class="muted">Average, plus minimum and maximum when available.</p></div></div>
+      <div class="table-scroll"><table><thead><tr><th>Interval</th><th>Avg. temperature</th><th>Avg. humidity</th><th>Min. temperature</th><th>Max. temperature</th><th>Min. humidity</th><th>Max. humidity</th></tr></thead><tbody id="summary-table"><tr><td colspan="7">Choose a time range.</td></tr></tbody></table></div>
+    </section>
+  </main>
+  <footer class="footer">Indoor climate <span>·</span> Historical report</footer>
+</body>
+</html>

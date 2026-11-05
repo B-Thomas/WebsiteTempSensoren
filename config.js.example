@@ -1,0 +1,18 @@
+/*
+  Copy this file to config.js and replace the placeholders.
+  Prefer relative API URLs when the files are on the same web server.
+  config.js does not contain database credentials.
+  secret must match api_secret in cgi-bin/config.php.
+  This key is used in the browser, so it is not a safe substitute for
+  server-side access control.
+*/
+window.SENSOR_CONFIG = {
+  roomsUrl: "cgi-bin/api_get_room_list.php",
+  dataUrl: "cgi-bin/api_combined.php",
+
+  secret: "YOUR_API_SECRET",
+  key: "YOUR_API_KEY",
+
+  // Automatic refresh of the overview, in milliseconds.
+  refreshMs: 60000
+};

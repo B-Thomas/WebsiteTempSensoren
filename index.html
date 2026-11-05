@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Live dashboard for temperature and humidity">
+  <title>Sensor dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body data-page="overview">
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">°</span><span>Indoor climate<span class="brand-subtitle">Sensor dashboard</span></span></a>
+    <div class="topbar-status"><span class="live-dot"></span> Live overview <span id="last-updated">Loading data …</span></div>
+  </header>
+  <main class="container">
+    <section class="page-heading">
+      <div><p class="eyebrow">MONITORING</p><h1>Room overview</h1><p class="muted">Temperature and relative humidity for the last 24 hours.</p></div>
+      <button class="button button-secondary" id="refresh-button" type="button">↻ Refresh</button>
+    </section>
+    <div id="global-error" class="notice notice-error hidden" role="alert"></div>
+    <section id="room-grid" class="room-grid" aria-live="polite">
+      <div class="loading-card">Loading rooms and readings …</div>
+    </section>
+    <p class="footnote">Charts refresh automatically. The actual interval depends on <code>config.js</code>.</p>
+  </main>
+  <footer class="footer">Indoor climate <span>·</span> Local sensor monitoring</footer>
+</body>
+</html>

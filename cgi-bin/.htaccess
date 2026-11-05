@@ -1,0 +1,9 @@
+AuthType Basic
+AuthName "Please log in"
+AuthUserFile /ABSOLUTE/PATH/TO/.htpasswd
+require valid-user
+
+<FilesMatch "^(config\.php|config\.example\.php|load_config\.php)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
